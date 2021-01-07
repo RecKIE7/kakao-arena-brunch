@@ -145,3 +145,4 @@ dataset/
 models/
 .*
 snapshot/
+tmp/

@@ -1,1 +1,1 @@
-data_root = './res/'
+data_root = '../dataset/kakao-arena-2nd/'
