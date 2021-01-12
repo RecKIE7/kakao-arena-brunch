@@ -145,3 +145,6 @@ dataset/
 .*
 snapshot/
 tmp/
+checkpoints/
+submission
+ipynb
