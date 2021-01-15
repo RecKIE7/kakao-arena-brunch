@@ -146,5 +146,7 @@ dataset/
 snapshot/
 tmp/
 checkpoints/
-submission
-ipynb
+submission/
+ipynb/
+record/
+res/

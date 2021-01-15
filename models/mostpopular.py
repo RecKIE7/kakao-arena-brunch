@@ -56,7 +56,19 @@ class MostPopular(object):
                 if userid not in set_users:
                     continue
                 seens[userid] = seen
+        print(seens)
         return seens
+    
+    def get_recommend_list(self, seens, topn):
+        mp = self._get_model()
+        mp = [a for a, _ in mp]
+        recs = mp[:topn]
+        sz = len(recs)
+        recs = mp[:topn]
+        recs = [r for r in recs if r not in seens]
+        if sz != len(recs):
+            print(sz, len(recs))
+        return recs[:topn]
 
     def recommend(self, userlist_path, out_path):
         mp = self._get_model()
