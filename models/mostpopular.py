@@ -56,7 +56,7 @@ class MostPopular(object):
                 if userid not in set_users:
                     continue
                 seens[userid] = seen
-        print(seens)
+        # print(seens)
         return seens
     
     def get_recommend_list(self, seens, topn):

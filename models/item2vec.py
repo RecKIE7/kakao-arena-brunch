@@ -47,7 +47,7 @@ class Item2Vec(object):
                 if userid not in set_users:
                     continue
                 seens[userid] = seen
-        print(seens)
+        # print(seens)
         return seens
 
     def _make_positive_list(self, model, positive_list):
@@ -58,7 +58,7 @@ class Item2Vec(object):
         return arr
     
 
-    def _recommender(self, model, positive_list=None, negative_list=None, topn=20):
+    def _recommender(self, model, positive_list=None, negative_list=None, topn=100):
         recommend_movie_ls = []
         
         for article_id, prob in model.wv.most_similar_cosmul(positive=positive_list, negative=negative_list, topn=topn):
@@ -67,12 +67,12 @@ class Item2Vec(object):
 
     def recommend(self, userlist_path, out_path):
         model = self._get_model()
-        
 
         with open(out_path, 'w') as fout:
             users = [u.strip() for u in open(userlist_path)]
             seens = self._get_seens(users) # positive list
-            recommend_list = self.mp.get_recommend_list(seens, topn=self.topn) # user cold strat 어떻게 해결하지? => 일단 most popular에서 가져옴
+            recommend_list = self.mp.get_recommend_list(seens, topn=self.topn) # user cold strat 어떻게 해결하지? => 일단 most popular에서 가져옴            
+            # p_list = recommend_list
             for user in users:
                 seen = list(set(seens.get(user, [])))
                 positive_list = self._make_positive_list(model, seen)
