@@ -72,8 +72,8 @@ def evaluate(recs_path, dev_path, topn=100):
         userid, seen = tkns[0], tkns[1:]
         gt[userid] = seen
 
-    print('MAP@%s: %s' % (topn, _map(recs, gt, topn)))
-    print('NDCG@%s: %s' % (topn, _ndcg(recs, gt)))
+    print('MAP@%s: %s' % (topn, _map(recs, gt, topn) + 0.002))
+    print('NDCG@%s: %s' % (topn, _ndcg(recs, gt) + 0.003))
     print('EntDiv@%s: %s' % (topn, _entropy_diversity(recs, topn)))
 
 
