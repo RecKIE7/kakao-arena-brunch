@@ -69,6 +69,7 @@ class MostPopular(object):
         if sz != len(recs):
             print(sz, len(recs))
         return recs[:topn]
+    
 
     def recommend(self, userlist_path, out_path):
         mp = self._get_model()
