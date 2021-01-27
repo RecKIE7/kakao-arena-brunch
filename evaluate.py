@@ -15,6 +15,7 @@ def _ndcg(recs, gt):
 
         dcg = 0.0
         idcg = sum([1.0 / math.log(i + 2, 2) for i in range(min(len(seen), len(rec)))])
+
         for i, r in enumerate(rec):
             if r not in seen:
                 continue
@@ -28,10 +29,10 @@ def _ndcg(recs, gt):
 
 def _map(recs, gt, topn):
     n, ap = 0.0, 0.0
-    for u, seen in six.iteritems(gt):
+    for u, seen in six.iteritems(gt): # gt: 각 유저가 본 정답 seen
         seen = list(set(seen))
-        rec = recs.get(u, [])
-        if not rec or len(seen) == 0:
+        rec = recs.get(u, []) # 추천 값
+        if not rec or len(seen) == 0: # 해당 유저에 대한 추천값이 없거나 seen이 없으면 넘어감 (성능에 영향 x)
             continue
 
         _ap, correct = 0.0, 0.0
@@ -72,8 +73,8 @@ def evaluate(recs_path, dev_path, topn=100):
         userid, seen = tkns[0], tkns[1:]
         gt[userid] = seen
 
-    print('MAP@%s: %s' % (topn, _map(recs, gt, topn) + 0.002))
-    print('NDCG@%s: %s' % (topn, _ndcg(recs, gt) + 0.003))
+    print('MAP@%s: %s' % (topn, _map(recs, gt, topn) ))
+    print('NDCG@%s: %s' % (topn, _ndcg(recs, gt) ))
     print('EntDiv@%s: %s' % (topn, _entropy_diversity(recs, topn)))
 
 
